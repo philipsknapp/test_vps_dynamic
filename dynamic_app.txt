@@ -1,0 +1,37 @@
+dynamic app backend design
+
+needs to work with both psql and mongodb
+
+This shouldn't actually be that hard though - the point isn't to create something complex, it's to create something bare minimum. Like a list of animals in PostgreSQL and a list of vegetables in MongoDB.
+
+- Set up the basic backend in Express
+------------------------------------------------------------------
+- set up dotenv to hold database info, pg to connect using that
+
+- set up animals service to select dummy data
+
+- set up index to display it with the route /animals/3000
+
+- set up git repo (make sure to ignore .env)
+
+
+
+
+
+
+
+
+------------------------------------------------------------------
+
+- Set up mongo db cluster
+- Set up routes for RESTful communication with psql and mongo
+- Test locally
+
+- Set up the frontend in React
+  - half the page lists animals and lets you submit your own
+  - half the page lists vegetables and lets you submit your own
+- Test locally
+
+- Upload to vps
+- set up ps/mongo dbs/schema
+- Test in vps
