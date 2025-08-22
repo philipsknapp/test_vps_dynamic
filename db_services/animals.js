@@ -34,6 +34,29 @@ async function selectAll() {
   }
 }
 
-module.exports = { selectAll }
+async function create(data) {
+  console.log(data)
+  let client;
+  try {
+    client = await connect()
+    await client.query('BEGIN')
+    const name = data.name || ""
+    const species = data.species || ""
+    const insertStatement = "INSERT INTO animals(name, species) VALUES ($1, $2)"
+    await client.query(insertStatement, [name, species]);
+    await client.query('COMMIT')
+    const getNewStatement = "SELECT * FROM animals WHERE name=$1 AND species=$2 ORDER BY id DESC LIMIT 1"
+    return await client.query(getNewStatement, [name, species])
+  } catch (err) {
+    await client.query('ROLLBACK')
+    console.error(err)
+  } finally {
+    if (client) {
+      await client.end()
+    }
+  }
+}
+
+module.exports = { selectAll, create }
 
 
